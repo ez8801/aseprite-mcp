@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/ez8801/aseprite-mcp/internal/aseprite"
 )
 
 // luaReadPixel reports one composited pixel as #RRGGBBAA. Aseprite packs a
@@ -33,7 +35,7 @@ return { x = cel.bounds.x, y = cel.bounds.y, width = cel.bounds.width, height = 
 
 func runScript(t *testing.T, body string, params map[string]any, out any) {
 	t.Helper()
-	runner, err := NewRunner()
+	runner, err := aseprite.NewRunner()
 	if err != nil {
 		t.Fatalf("locating Aseprite: %v", err)
 	}

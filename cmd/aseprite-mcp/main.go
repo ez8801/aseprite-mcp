@@ -13,9 +13,11 @@ import (
 	"os"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
+
+	"github.com/ez8801/aseprite-mcp/internal/aseprite"
 )
 
-const version = "0.1.0"
+const version = "1.0.0"
 
 func main() {
 	// stdout carries the MCP protocol, so diagnostics must go to stderr.
@@ -23,7 +25,7 @@ func main() {
 	log.SetFlags(0)
 	log.SetPrefix("aseprite-mcp: ")
 
-	runner, err := NewRunner()
+	runner, err := aseprite.NewRunner()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -39,7 +41,7 @@ func main() {
 			"them directly. Tools that write refuse to clobber an existing file unless " +
 			"overwrite is set. Call aseprite_health to check that Aseprite is reachable.",
 	})
-	register(server, runner)
+	aseprite.Register(server, runner)
 
 	// A closed stdin is how a client disconnects, so it is not a failure.
 	if err := server.Run(context.Background(), &mcp.StdioTransport{}); err != nil && !errors.Is(err, io.EOF) {

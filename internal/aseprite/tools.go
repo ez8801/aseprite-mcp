@@ -1,4 +1,4 @@
-package main
+package aseprite
 
 import (
 	"bytes"
@@ -76,7 +76,7 @@ func cleanPaths(node any) error {
 }
 
 // register wires every tool and prompt this server exposes onto s.
-func register(s *mcp.Server, r *Runner) {
+func Register(s *mcp.Server, r *Runner) {
 	mcp.AddTool(s, &mcp.Tool{
 		Name: "aseprite_health",
 		Description: "Report the Aseprite executable the server is driving and its version. " +

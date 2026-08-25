@@ -1,4 +1,4 @@
-module github.com/minu/aseprite-mcp
+module github.com/ez8801/aseprite-mcp
 
 go 1.26.7
 

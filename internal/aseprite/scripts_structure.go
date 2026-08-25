@@ -1,4 +1,4 @@
-package main
+package aseprite
 
 const luaAddLayer = `
 local sprite = openSprite(P.path)

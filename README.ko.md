@@ -1,5 +1,7 @@
 [English](README.md) | 한국어
 
+[![CI](https://github.com/ez8801/aseprite-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ez8801/aseprite-mcp/actions/workflows/ci.yml)
+
 # Aseprite MCP
 
 AI 어시스턴트가 [Aseprite](https://www.aseprite.org/) 스프라이트를 생성하고
@@ -96,10 +98,24 @@ Claude Code에서는 슬래시 명령으로 나타난다:
 일치하는 것이 선택된다. 그리기 도구는 기본적으로 첫 이미지 레이어를 쓴다.
 그룹은 픽셀을 담지 않으므로 거부된다.
 
+## 설치
+
+[최신 릴리스](https://github.com/ez8801/aseprite-mcp/releases/latest)에서
+`aseprite-mcp.exe`를 받거나, 직접 빌드한다.
+
 ## 빌드
 
+Go 1.26 이상:
+
 ```
-go build -o aseprite-mcp.exe .
+go build -o aseprite-mcp.exe ./cmd/aseprite-mcp
+```
+
+저장소는 하나의 커맨드와 하나의 내부 패키지로 구성된다:
+
+```
+cmd/aseprite-mcp/     서버 바이너리와 end-to-end 테스트
+internal/aseprite/    러너, Lua 스크립트, 도구, 프롬프트
 ```
 
 ## 설정

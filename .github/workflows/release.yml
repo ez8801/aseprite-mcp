@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to release, e.g. v1.0.0
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Build windows/amd64
+        env:
+          GOOS: windows
+          GOARCH: amd64
+          CGO_ENABLED: '0'
+        run: |
+          mkdir -p dist
+          go build -trimpath -ldflags '-s -w' -o dist/aseprite-mcp.exe ./cmd/aseprite-mcp
+
+      - name: Package
+        run: |
+          cp README.md README.ko.md LICENSE dist/
+          cd dist
+          zip -r "aseprite-mcp_${TAG}_windows_amd64.zip" aseprite-mcp.exe README.md README.ko.md LICENSE
+          sha256sum "aseprite-mcp_${TAG}_windows_amd64.zip" aseprite-mcp.exe > checksums.txt
+
+      - name: Publish release
+        run: |
+          gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes \
+            "dist/aseprite-mcp_${TAG}_windows_amd64.zip" \
+            dist/aseprite-mcp.exe \
+            dist/checksums.txt

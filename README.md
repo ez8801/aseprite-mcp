@@ -1,3 +1,7 @@
+English | [한국어](README.ko.md)
+
+[![CI](https://github.com/ez8801/aseprite-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ez8801/aseprite-mcp/actions/workflows/ci.yml)
+
 # Aseprite MCP
 
 An [MCP](https://modelcontextprotocol.io) server that lets an AI assistant
@@ -97,10 +101,25 @@ Frames are numbered from 1. A layer name is matched inside groups too, and the
 first match in stacking order wins. Drawing tools default to the first image
 layer; a group holds no pixels and is rejected.
 
+## Install
+
+Download `aseprite-mcp.exe` from the
+[latest release](https://github.com/ez8801/aseprite-mcp/releases/latest), or
+build it yourself.
+
 ## Build
 
+Go 1.26 or newer:
+
 ```
-go build -o aseprite-mcp.exe .
+go build -o aseprite-mcp.exe ./cmd/aseprite-mcp
+```
+
+The repository is laid out as a single command over one internal package:
+
+```
+cmd/aseprite-mcp/     the server binary, and the end-to-end tests
+internal/aseprite/    the runner, the Lua scripts, the tools and the prompt
 ```
 
 ## Configure

@@ -8,6 +8,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/ez8801/aseprite-mcp/internal/aseprite"
+
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
@@ -138,7 +140,7 @@ return { row = row }
 
 func readRow(t *testing.T, path string, y int) string {
 	t.Helper()
-	runner, err := NewRunner()
+	runner, err := aseprite.NewRunner()
 	if err != nil {
 		t.Fatalf("locating Aseprite: %v", err)
 	}

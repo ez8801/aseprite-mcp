@@ -1,4 +1,4 @@
-package main
+package aseprite
 
 // Lua script bodies. Each runs inside the pcall wrapper in prelude, reads its
 // arguments from the table P and returns a table that becomes the tool result.

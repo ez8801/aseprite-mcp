@@ -1,4 +1,4 @@
-package main
+package aseprite
 
 const luaSetPalette = `
 local sprite = openSprite(P.path)

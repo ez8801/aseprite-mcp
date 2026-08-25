@@ -10,6 +10,8 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+
+	"github.com/ez8801/aseprite-mcp/internal/aseprite"
 	"time"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
@@ -41,7 +43,7 @@ func TestMain(m *testing.M) {
 // skipped when Aseprite is not installed, since the server exits at startup.
 func connect(t *testing.T) (context.Context, *mcp.ClientSession) {
 	t.Helper()
-	if _, err := findAseprite(); err != nil {
+	if _, err := aseprite.NewRunner(); err != nil {
 		t.Skip("Aseprite not installed: ", err)
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Minute)
@@ -214,7 +216,7 @@ return { frames = #sprite.frames }
 
 func makeAnimated(t *testing.T, path string, frames int) {
 	t.Helper()
-	runner, err := NewRunner()
+	runner, err := aseprite.NewRunner()
 	if err != nil {
 		t.Fatalf("locating Aseprite: %v", err)
 	}

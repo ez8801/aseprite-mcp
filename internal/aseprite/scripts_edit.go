@@ -1,4 +1,4 @@
-package main
+package aseprite
 
 // luaHelpers is spliced into every generated script by prelude. It must not
 // contain percent verbs, since prelude is a format string.
