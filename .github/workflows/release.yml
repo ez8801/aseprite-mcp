@@ -11,6 +11,10 @@ on:
 
 permissions:
   contents: write
+  # attest-build-provenance mints a signing certificate from the job's OIDC
+  # token and records the attestation against the repository.
+  id-token: write
+  attestations: write
 
 jobs:
   release:
@@ -34,6 +38,13 @@ jobs:
         run: |
           mkdir -p dist
           go build -trimpath -ldflags '-s -w' -o dist/aseprite-mcp.exe ./cmd/aseprite-mcp
+
+      # Attest the binary before it is zipped or hashed, so the attested digest
+      # is the one users end up running.
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/aseprite-mcp.exe
 
       - name: Package
         run: |

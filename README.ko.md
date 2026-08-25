@@ -103,6 +103,16 @@ Claude Code에서는 슬래시 명령으로 나타난다:
 [최신 릴리스](https://github.com/ez8801/aseprite-mcp/releases/latest)에서
 `aseprite-mcp.exe`를 받거나, 직접 빌드한다.
 
+릴리스 바이너리는 GitHub Actions가 빌드하며 build attestation이 붙는다.
+실행 전에 이 저장소에서 나온 파일인지 확인할 수 있다:
+
+```
+gh attestation verify aseprite-mcp.exe --repo ez8801/aseprite-mcp
+```
+
+단순 해시 비교용으로 `checksums.txt`도 함께 올라간다. Authenticode 서명은
+하지 않으므로 Windows SmartScreen은 첫 실행에서 여전히 경고한다.
+
 ## 빌드
 
 Go 1.26 이상:

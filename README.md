@@ -107,6 +107,17 @@ Download `aseprite-mcp.exe` from the
 [latest release](https://github.com/ez8801/aseprite-mcp/releases/latest), or
 build it yourself.
 
+Release binaries are built by GitHub Actions and carry a build attestation, so
+you can check that a download came from this repository before running it:
+
+```
+gh attestation verify aseprite-mcp.exe --repo ez8801/aseprite-mcp
+```
+
+The release also ships `checksums.txt` for a plain hash comparison. The binary
+is not Authenticode signed, so Windows SmartScreen will still warn on first
+run.
+
 ## Build
 
 Go 1.26 or newer:
