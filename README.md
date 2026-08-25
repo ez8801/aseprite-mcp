@@ -130,7 +130,7 @@ The repository is laid out as a single command over one internal package:
 
 ```
 cmd/aseprite-mcp/     the server binary, and the end-to-end tests
-internal/aseprite/    the runner, the Lua scripts, the tools and the prompt
+aseprite/             the runner, the Lua scripts, the tools and the prompt
 ```
 
 ## Configure

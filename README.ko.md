@@ -125,7 +125,7 @@ go build -o aseprite-mcp.exe ./cmd/aseprite-mcp
 
 ```
 cmd/aseprite-mcp/     서버 바이너리와 end-to-end 테스트
-internal/aseprite/    러너, Lua 스크립트, 도구, 프롬프트
+aseprite/             러너, Lua 스크립트, 도구, 프롬프트
 ```
 
 ## 설정

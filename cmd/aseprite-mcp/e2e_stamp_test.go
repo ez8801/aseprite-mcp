@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ez8801/aseprite-mcp/internal/aseprite"
+	"github.com/ez8801/aseprite-mcp/aseprite"
 )
 
 // luaReadPixel reports one composited pixel as #RRGGBBAA. Aseprite packs a

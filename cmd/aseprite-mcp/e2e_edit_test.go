@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ez8801/aseprite-mcp/internal/aseprite"
+	"github.com/ez8801/aseprite-mcp/aseprite"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )

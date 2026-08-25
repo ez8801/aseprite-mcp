@@ -6,16 +6,17 @@ MCP server that drives Aseprite through its batch-mode CLI.
 
 ```
 cmd/aseprite-mcp/     the command: stdio server wiring, plus the e2e suite
-internal/aseprite/    everything else, as package aseprite
+aseprite/             everything else, as package aseprite
 ```
 
 `cmd/aseprite-mcp/main.go` builds the MCP server and calls
-`aseprite.Register`. Nothing else is exported from the package: `NewRunner`,
-`Runner` and `Register` are the whole surface.
+`aseprite.Register`. The package is importable from outside the module, so
+the exported surface is the API other tools depend on: `NewRunner`, `Runner`
+and `Register`, and nothing more.
 
-Every tool call is one Aseprite process. `Runner.Run` (internal/aseprite/aseprite.go)
+Every tool call is one Aseprite process. `Runner.Run` (aseprite/aseprite.go)
 renders a Lua body into a temp file, runs `Aseprite.exe -b --script <file>`,
-and reads the result back off stdout. Files inside `internal/aseprite`:
+and reads the result back off stdout. Files inside `aseprite`:
 
 - `aseprite.go` — locating Aseprite, the script envelope, running it.
 - `scripts.go` / `scripts_edit.go` / `scripts_structure.go` /
