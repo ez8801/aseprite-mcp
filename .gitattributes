@@ -1,0 +1,7 @@
+* text=auto eol=crlf
+
+# gofmt rewrites Go sources to LF, so CRLF here would leave every file
+# permanently reported as unformatted.
+*.go text eol=lf
+go.mod text eol=lf
+go.sum text eol=lf
